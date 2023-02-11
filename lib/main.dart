@@ -14,7 +14,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.red,
-
       ),
       home: const DashBoard(),
     );
