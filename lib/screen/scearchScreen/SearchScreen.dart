@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class AddTaskScreen extends StatefulWidget {
+class SearchScreen extends StatefulWidget {
   final List finalSearchList;
 
-  const AddTaskScreen({Key? key, required this.finalSearchList})
+  const SearchScreen({Key? key, required this.finalSearchList})
       : super(key: key);
 
   @override
-  State<AddTaskScreen> createState() => _AddTaskScreenState();
+  State<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _AddTaskScreenState extends State<AddTaskScreen> {
+class _SearchScreenState extends State<SearchScreen> {
   TextEditingController searchController = TextEditingController();
   bool isSearch = false;
   List<String> searchList = [];
@@ -141,10 +141,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               );
             },
             separatorBuilder: (BuildContext context, int index) {
-              return  const Divider(
+              return const Divider(
                 indent: 1,
                 endIndent: 5,
-                thickness: 0.3,
+                thickness: 1,
                 color: Colors.black,
               );
             },

@@ -1,6 +1,7 @@
 # task_list
+# flutter version : 3.7.0
 
-This project base on list
+This project base on to do list
 
 ## Getting Started
 

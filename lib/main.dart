@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_list/screen/DashBoard.dart';
+import 'package:task_list/screen/DashBoard/DashBoard.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const DashBoard(),
+      home: const DashBoardScreen(),
     );
   }
 }
