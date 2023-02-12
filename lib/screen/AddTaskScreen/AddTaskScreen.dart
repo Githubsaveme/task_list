@@ -17,7 +17,6 @@ class _AddTaskScreenState extends State<AddTaskScreen>
 
   final formGlobalKey = GlobalKey<FormState>();
 
-
   List<String> addList = [];
 
   ///bool prio.
@@ -30,6 +29,10 @@ class _AddTaskScreenState extends State<AddTaskScreen>
   bool isSelectedToday = false;
   bool isSelectedLater = false;
 
+  ///global value
+  String prioritySelected = '';
+  String whenSelected = '';
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -38,7 +41,9 @@ class _AddTaskScreenState extends State<AddTaskScreen>
             onPressed: () {
               if (formGlobalKey.currentState!.validate()) {
                 listController.text;
-                Navigator.pop(context,listController.text);
+                prioritySelected;
+                whenSelected;
+                Navigator.pop(context, [listController.text,prioritySelected,whenSelected]);
               } else {
                 debugPrint('write something');
               }
@@ -49,7 +54,7 @@ class _AddTaskScreenState extends State<AddTaskScreen>
           slivers: [
             SliverAppBar(
               automaticallyImplyLeading: true,
-              actions: [
+            /*  actions: [
                 IconButton(
                     onPressed: () {
                       Navigator.push(
@@ -60,7 +65,7 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                                   )));
                     },
                     icon: const Icon(Icons.search))
-              ],
+              ],*/
               title: const Text("To Do"),
               expandedHeight: 200,
               flexibleSpace: FlexibleSpaceBar(
@@ -141,10 +146,13 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                               onTap: () {
                                 debugPrint('high');
                                 if (isSelectedHigh) {
-                                  isSelectedHigh = false;
+                                  isSelectedHigh = true;
                                   isSelectedLow = false;
                                   isSelectedMedium = false;
                                   debugPrint('true');
+                                  prioritySelected = 'high';
+                                  debugPrint(
+                                      'prioritySelected $prioritySelected');
                                 } else {
                                   isSelectedHigh = true;
                                   isSelectedLow = false;
@@ -194,8 +202,11 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                                 if (isSelectedMedium) {
                                   isSelectedHigh = false;
                                   isSelectedLow = false;
-                                  isSelectedMedium = false;
+                                  isSelectedMedium = true;
                                   debugPrint('true');
+                                  prioritySelected = 'medium';
+                                  debugPrint(
+                                      'prioritySelected $prioritySelected');
                                 } else {
                                   isSelectedHigh = false;
                                   isSelectedLow = false;
@@ -244,7 +255,7 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                                 debugPrint('low');
                                 if (isSelectedLow) {
                                   isSelectedHigh = false;
-                                  isSelectedLow = false;
+                                  isSelectedLow = true;
                                   isSelectedMedium = false;
                                   debugPrint('true');
                                 } else {
@@ -252,6 +263,9 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                                   isSelectedLow = true;
                                   isSelectedMedium = false;
                                   debugPrint('false');
+                                  prioritySelected = 'low';
+                                  debugPrint(
+                                      'prioritySelected $prioritySelected');
                                 }
                                 setState(() {});
                               },
@@ -311,6 +325,8 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                                 if (isSelectedToday) {
                                   isSelectedToday = false;
                                   isSelectedLater = false;
+                                  whenSelected = 'today';
+                                  debugPrint("whenSelected$whenSelected");
                                 } else {
                                   isSelectedToday = true;
                                   isSelectedLater = false;
@@ -336,8 +352,10 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                               onTap: () {
                                 if (isSelectedLater) {
                                   isSelectedToday = false;
-                                  isSelectedLater = false;
+                                  isSelectedLater = true;
                                   debugPrint('true');
+                                  whenSelected = 'later';
+                                  debugPrint('whenSelected $whenSelected');
                                 } else {
                                   isSelectedToday = false;
                                   isSelectedLater = true;

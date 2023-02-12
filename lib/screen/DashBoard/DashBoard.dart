@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:task_list/screen/AddTaskScreen/AddTaskScreen.dart';
 import 'package:task_list/utils/CommonThings/commonThings.dart';
 
+import '../scearchScreen/SearchScreen.dart';
+
 class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({Key? key}) : super(key: key);
 
@@ -10,8 +12,12 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
-  List<String> todayList=[];
-  List<String> laterList=[];
+  List<dynamic> todayList = [];
+  List<String> laterList = [];
+
+  ///strings
+  String priority = '';
+  String when = '';
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +26,29 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         backgroundColor: Colors.grey.shade200,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const AddTaskScreen()))
+            Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AddTaskScreen()))
                 .then((value) async => {
-                  if(value!=null){
-                    todayList.add(value)
-                  }else{
-
-                  },
-              debugPrint("value $value")
-            });
+                      if (value != null)
+                        {
+                          if (value[2].toString() == 'today')
+                            {
+                              todayList.add(value[0].toString()),
+                              priority = value[1].toString(),
+                              when = value[2].toString()
+                            }
+                          else
+                            {
+                              laterList.add(value[0].toString()),
+                              priority = value[1].toString(),
+                              when = value[2].toString()
+                            },
+                        }
+                      else
+                        debugPrint("value $value")
+                    });
             setState(() {});
           },
           child: const Icon(
@@ -37,6 +57,21 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           ),
         ),
         appBar: AppBar(
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SearchScreen(
+                                finalSearchList: todayList,
+                              )));
+                },
+                icon: const Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ))
+          ],
           title: const Text(
             titleApp,
             style: TextStyle(color: Colors.black),
@@ -61,11 +96,11 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     margin: EdgeInsets.symmetric(
                         horizontal: size.width * 0.05,
                         vertical: size.width * 0.05),
-                    child: const CircleAvatar(
-                      backgroundImage: NetworkImage(
+                    child: CircleAvatar(
+                      backgroundImage: const NetworkImage(
                           'https://images.unsplash.com/photo-1661956602139-ec64991b8b16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=2000&q=60'),
                       child: ClipRRect(
-                        child: Text('0'),
+                        child: Text(todayList.length.toString()),
                       ),
                     ),
                   )
@@ -118,7 +153,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                 fontSize: size.width * 0.05),
                                           ),
                                           Text(
-                                            "description",
+                                            priority,
                                             style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: size.width * 0.03),
@@ -159,11 +194,11 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     margin: EdgeInsets.symmetric(
                         horizontal: size.width * 0.05,
                         vertical: size.width * 0.05),
-                    child: const CircleAvatar(
-                      backgroundImage: NetworkImage(
+                    child: CircleAvatar(
+                      backgroundImage: const NetworkImage(
                           'https://images.unsplash.com/photo-1661956602139-ec64991b8b16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=2000&q=60'),
                       child: ClipRRect(
-                        child: Text('0'),
+                        child: Text(laterList.length.toString()),
                       ),
                     ),
                   )
@@ -208,13 +243,13 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        "Today work",
+                                        laterList[idx],
                                         style: TextStyle(
                                             color: Colors.black,
                                             fontSize: size.width * 0.05),
                                       ),
                                       Text(
-                                        "description",
+                                        priority,
                                         style: TextStyle(
                                             color: Colors.grey,
                                             fontSize: size.width * 0.03),
