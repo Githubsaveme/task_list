@@ -17,8 +17,6 @@ class _AddTaskScreenState extends State<AddTaskScreen>
 
   final formGlobalKey = GlobalKey<FormState>();
 
-  List<String> addList = [];
-
   ///bool prio.
   bool isSelectedHigh = false;
   bool isSelectedMedium = false;
@@ -150,7 +148,7 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                                   isSelectedLow = false;
                                   isSelectedMedium = false;
                                   debugPrint('true');
-                                  prioritySelected = 'high';
+                                  prioritySelected = high;
                                   debugPrint(
                                       'prioritySelected $prioritySelected');
                                 } else {
@@ -204,7 +202,7 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                                   isSelectedLow = false;
                                   isSelectedMedium = true;
                                   debugPrint('true');
-                                  prioritySelected = 'medium';
+                                  prioritySelected = medium;
                                   debugPrint(
                                       'prioritySelected $prioritySelected');
                                 } else {
@@ -263,7 +261,7 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                                   isSelectedLow = true;
                                   isSelectedMedium = false;
                                   debugPrint('false');
-                                  prioritySelected = 'low';
+                                  prioritySelected = low;
                                   debugPrint(
                                       'prioritySelected $prioritySelected');
                                 }
@@ -325,7 +323,7 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                                 if (isSelectedToday) {
                                   isSelectedToday = false;
                                   isSelectedLater = false;
-                                  whenSelected = 'today';
+                                  whenSelected = today;
                                   debugPrint("whenSelected$whenSelected");
                                 } else {
                                   isSelectedToday = true;
@@ -354,7 +352,7 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                                   isSelectedToday = false;
                                   isSelectedLater = true;
                                   debugPrint('true');
-                                  whenSelected = 'later';
+                                  whenSelected = later;
                                   debugPrint('whenSelected $whenSelected');
                                 } else {
                                   isSelectedToday = false;
@@ -381,53 +379,6 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                           ],
                         )
 
-                        ///old
-                        /* addList.isNotEmpty
-                        ? ListView.separated(
-                            physics: const NeverScrollableScrollPhysics(),
-                            padding: EdgeInsets.all(size.width * 0.05),
-                            itemCount: addList.length,
-                            shrinkWrap: true,
-                            itemBuilder: (BuildContext context, index) {
-                              return Container(
-                                padding: EdgeInsets.all(size.width * 0.02),
-                                transform: Matrix4.rotationZ(0.1),
-                                decoration: BoxDecoration(
-                                    color: Colors.primaries[Random()
-                                        .nextInt(Colors.primaries.length)],
-                                    border: Border.all(
-                                      color: Colors.black,
-                                    ),
-                                    borderRadius: BorderRadius.circular(
-                                        size.width * 0.05)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      addList[index],
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    IconButton(
-                                        onPressed: () {
-                                          addList.removeAt(index);
-                                          setState(() {});
-                                        },
-                                        icon: const Icon(Icons.delete))
-                                  ],
-                                ),
-                              );
-                            },
-                            separatorBuilder:
-                                (BuildContext context, int index) {
-                              return SizedBox(
-                                height: size.height * 0.02,
-                              );
-                            },
-                          )
-                        : const Center(
-                            child: Text('Please add you\'re first to do')),*/
                       ]),
                 ),
               ),

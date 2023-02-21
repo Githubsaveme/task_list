@@ -12,8 +12,10 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
-  List<dynamic> todayList = [];
+  List<String> todayList = [];
   List<String> laterList = [];
+  List<String> priorityList = [];
+  List<String> whenList = [];
 
   ///strings
   String priority = '';
@@ -33,23 +35,27 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 .then((value) async => {
                       if (value != null)
                         {
-                          if (value[2].toString() == 'today')
+                          if (value[2].toString() == today)
                             {
                               todayList.add(value[0].toString()),
-                              priority = value[1].toString(),
-                              when = value[2].toString()
+                              priorityList.add(
+                                value[1].toString(),),
+                              when = value[2].toString(),
+
                             }
                           else
                             {
                               laterList.add(value[0].toString()),
-                              priority = value[1].toString(),
+                              priorityList.add(
+                                value[1].toString(),
+                              ),
                               when = value[2].toString()
                             },
                         }
                       else
-                        debugPrint("value $value")
+                        {debugPrint("value $value")},
+                         setState(() {})
                     });
-            setState(() {});
           },
           child: const Icon(
             Icons.add,
@@ -153,7 +159,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                 fontSize: size.width * 0.05),
                                           ),
                                           Text(
-                                            priority,
+                                            priorityList[index],
                                             style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: size.width * 0.03),
@@ -162,10 +168,16 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                       ),
                                     ],
                                   ),
-                                  const SizedBox(
+                                  SizedBox(
                                     height: 50,
                                     child: VerticalDivider(
-                                      color: Colors.black,
+                                      color: priorityList[index] == high
+                                          ? Colors.red
+                                          : priorityList[index] == medium
+                                              ? Colors.yellow
+                                              : priorityList[index] == low
+                                                  ? Colors.green
+                                                  : Colors.grey,
                                       width: 1,
                                       thickness: 3,
                                       indent: 1,
@@ -249,7 +261,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                             fontSize: size.width * 0.05),
                                       ),
                                       Text(
-                                        priority,
+                                        priorityList[idx],
                                         style: TextStyle(
                                             color: Colors.grey,
                                             fontSize: size.width * 0.03),
@@ -258,10 +270,16 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                   ),
                                 ],
                               ),
-                              const SizedBox(
+                              SizedBox(
                                 height: 50,
                                 child: VerticalDivider(
-                                  color: Colors.black,
+                                  color: priorityList[idx] == high
+                                      ? Colors.red
+                                      : priorityList[idx] == medium
+                                          ? Colors.yellow
+                                          : priorityList[idx] == low
+                                              ? Colors.green
+                                              : Colors.grey,
                                   width: 1,
                                   thickness: 3,
                                   indent: 1,
