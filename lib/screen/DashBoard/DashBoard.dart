@@ -39,9 +39,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                             {
                               todayList.add(value[0].toString()),
                               priorityList.add(
-                                value[1].toString(),),
+                                value[1].toString(),
+                              ),
                               when = value[2].toString(),
-
                             }
                           else
                             {
@@ -54,7 +54,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                         }
                       else
                         {debugPrint("value $value")},
-                         setState(() {})
+                      setState(() {})
                     });
           },
           child: const Icon(

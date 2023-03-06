@@ -17,7 +17,7 @@ class _AddTaskScreenState extends State<AddTaskScreen>
 
   final formGlobalKey = GlobalKey<FormState>();
 
-  ///bool prio.
+  ///bool priority.
   bool isSelectedHigh = false;
   bool isSelectedMedium = false;
   bool isSelectedLow = false;
@@ -41,7 +41,8 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                 listController.text;
                 prioritySelected;
                 whenSelected;
-                Navigator.pop(context, [listController.text,prioritySelected,whenSelected]);
+                Navigator.pop(context,
+                    [listController.text, prioritySelected, whenSelected]);
               } else {
                 debugPrint('write something');
               }
@@ -52,7 +53,7 @@ class _AddTaskScreenState extends State<AddTaskScreen>
           slivers: [
             SliverAppBar(
               automaticallyImplyLeading: true,
-            /*  actions: [
+              /*  actions: [
                 IconButton(
                     onPressed: () {
                       Navigator.push(
@@ -142,21 +143,11 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                           children: [
                             GestureDetector(
                               onTap: () {
-                                debugPrint('high');
-                                if (isSelectedHigh) {
-                                  isSelectedHigh = true;
-                                  isSelectedLow = false;
-                                  isSelectedMedium = false;
-                                  debugPrint('true');
-                                  prioritySelected = high;
-                                  debugPrint(
-                                      'prioritySelected $prioritySelected');
-                                } else {
-                                  isSelectedHigh = true;
-                                  isSelectedLow = false;
-                                  isSelectedMedium = false;
-                                  debugPrint('false');
-                                }
+                                isSelectedHigh = true;
+                                isSelectedMedium = false;
+                                isSelectedLow = false;
+                                prioritySelected = high;
+                                debugPrint('high$prioritySelected');
                                 setState(() {});
                               },
                               child: Card(
@@ -196,21 +187,11 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                             ),
                             GestureDetector(
                               onTap: () {
-                                debugPrint('medium');
-                                if (isSelectedMedium) {
-                                  isSelectedHigh = false;
-                                  isSelectedLow = false;
-                                  isSelectedMedium = true;
-                                  debugPrint('true');
-                                  prioritySelected = medium;
-                                  debugPrint(
-                                      'prioritySelected $prioritySelected');
-                                } else {
-                                  isSelectedHigh = false;
-                                  isSelectedLow = false;
-                                  isSelectedMedium = true;
-                                  debugPrint('false');
-                                }
+                                isSelectedMedium = true;
+                                isSelectedHigh = false;
+                                isSelectedLow = false;
+                                prioritySelected = medium;
+                                debugPrint(prioritySelected);
                                 setState(() {});
                               },
                               child: Card(
@@ -251,20 +232,12 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                             GestureDetector(
                               onTap: () {
                                 debugPrint('low');
-                                if (isSelectedLow) {
-                                  isSelectedHigh = false;
-                                  isSelectedLow = true;
-                                  isSelectedMedium = false;
-                                  debugPrint('true');
-                                } else {
-                                  isSelectedHigh = false;
-                                  isSelectedLow = true;
-                                  isSelectedMedium = false;
-                                  debugPrint('false');
-                                  prioritySelected = low;
-                                  debugPrint(
-                                      'prioritySelected $prioritySelected');
-                                }
+                                isSelectedLow = true;
+                                isSelectedHigh = false;
+                                isSelectedMedium = false;
+                                prioritySelected = low;
+                                debugPrint(prioritySelected);
+
                                 setState(() {});
                               },
                               child: Card(
@@ -304,7 +277,6 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                             )
                           ],
                         ),
-
                         Container(
                           margin: EdgeInsets.only(top: size.width * 0.1),
                           child: Text(
@@ -320,15 +292,10 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                           children: [
                             GestureDetector(
                               onTap: () {
-                                if (isSelectedToday) {
-                                  isSelectedToday = false;
-                                  isSelectedLater = false;
-                                  whenSelected = today;
-                                  debugPrint("whenSelected$whenSelected");
-                                } else {
-                                  isSelectedToday = true;
-                                  isSelectedLater = false;
-                                }
+                                isSelectedToday = true;
+                                isSelectedLater = false;
+                                whenSelected = today;
+                                debugPrint('today');
                                 setState(() {});
                               },
                               child: Card(
@@ -348,17 +315,10 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                             ),
                             GestureDetector(
                               onTap: () {
-                                if (isSelectedLater) {
-                                  isSelectedToday = false;
-                                  isSelectedLater = true;
-                                  debugPrint('true');
-                                  whenSelected = later;
-                                  debugPrint('whenSelected $whenSelected');
-                                } else {
-                                  isSelectedToday = false;
-                                  isSelectedLater = true;
-                                  debugPrint('false');
-                                }
+                                isSelectedToday = false;
+                                isSelectedLater = true;
+                                whenSelected = later;
+                                debugPrint('later');
                                 setState(() {});
                               },
                               child: Card(
@@ -378,7 +338,6 @@ class _AddTaskScreenState extends State<AddTaskScreen>
                             ),
                           ],
                         )
-
                       ]),
                 ),
               ),
